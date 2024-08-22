@@ -2,8 +2,10 @@ import os
 from pathlib import Path
 import logging
 
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s')
 
+# List of files and directories to create
 list_of_files = [
     "src/__init__.py",
     "src/logger.py",
@@ -21,16 +23,18 @@ list_of_files = [
 ]
 
 for filepath in list_of_files:
-    filepath = Path(filepath)
-    filedir, filename = os.path.split(filepath)
+    path = Path(filepath)
+    filedir, filename = path.parent, path.name
 
+    # Create directories if needed
     if filedir != "":
-        os.makedirs(filedir, exist_ok=True)
-        logging.info(f"Creating directory: {filedir} for the file {filename}")
+        if not filedir.exists():
+            filedir.mkdir(parents=True, exist_ok=True)
+            logging.info(f"Created directory: {filedir}")
 
-    if not os.path.exists(filepath) or os.path.getsize(filepath) == 0:
-        with open(filepath, 'w') as f:
-            pass
-        logging.info(f"Creating empty file: {filepath}")
+    # Create empty file if it doesn't exist or is empty
+    if not path.exists() or path.stat().st_size == 0:
+        path.touch()  # Create an empty file
+        logging.info(f"Created empty file: {path}")
     else:
-        logging.info(f"{filename} already exists")
+        logging.info(f"File already exists: {path}")

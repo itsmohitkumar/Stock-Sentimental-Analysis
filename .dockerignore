@@ -1,0 +1,23 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Ignore virtual environment directories
+venv/
+env/
+__env__/
+
+# Ignore local environment configuration files
+.env
+
+# Ignore Jupyter notebooks
+notebooks/
+
+# Ignore Git-related files
+.git/
+.gitignore
+
+# Ignore static files and templates not needed in the image
+static/
+templates/
