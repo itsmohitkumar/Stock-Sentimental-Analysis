@@ -1,9 +1,14 @@
 from setuptools import setup, find_packages
 
+with open('README.md', 'r') as f:
+    long_description = f.read()
+
 setup(
-    name='sentiment_analysis',
+    name='Stock-Sentimental-Analysis',
     version='0.1.0',
     description='A package for sentiment analysis of tweets',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Mohit Kumar',
     author_email='mohitpanghal12345@gmail.com',
     url='https://github.com/itsmohitkumar/Stock-Sentimental-Analysis',
@@ -23,7 +28,7 @@ setup(
     entry_points={
         'console_scripts': [
             'install_nltk_data=install_nltk_data:install_nltk_data',
-            'run_app=app:main',  # Adjust this line to point to the function you want to run
+            'run_app=app:main', 
         ],
     },
     classifiers=[
